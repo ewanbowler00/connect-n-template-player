@@ -38,13 +38,15 @@ public class AlanisFourconnect extends Player {
           continue;
 
         if (row + 3 < boardHeight) {
-          if (board.getCounterAtPosition(new Position(col, row + 1)) == null || board.getCounterAtPosition(new Position(col, row + 2)) == null || board.getCounterAtPosition(new Position(col, row + 3)) == null) {
+          System.out.println("A HI");
+          if (board.getCounterAtPosition(new Position(col, row)) == null || board.getCounterAtPosition(new Position(col, row + 1)) == null || board.getCounterAtPosition(new Position(col, row + 2)) == null) {
             continue;
           } else {
-            if (board.getCounterAtPosition(new Position(col, row + 1)).equals(board.getCounterAtPosition(new Position(col, row + 2)))
-                    && board.getCounterAtPosition(new Position(col, row + 1)).equals(board.getCounterAtPosition(new Position(col, row + 3)))) {
+            System.out.println("A HII");
+            if (board.getCounterAtPosition(new Position(col, row)).equals(board.getCounterAtPosition(new Position(col, row + 1)))
+                    && board.getCounterAtPosition(new Position(col, row)).equals(board.getCounterAtPosition(new Position(col, row + 2)))) {
               System.out.println("A) FOUND 3");
-              if (!board.hasCounterAtPosition(new Position(col, row + 4))) {
+              if (!board.hasCounterAtPosition(new Position(col, row + 3))) {
                 System.out.println("col OUTPUT:" + col);
                 return col;
               }
@@ -52,29 +54,31 @@ public class AlanisFourconnect extends Player {
           }
         }
         if (col + 3 < boardWidth) {
-          if (board.getCounterAtPosition(new Position(col+1, row)) == null || board.getCounterAtPosition(new Position(col+2, row)) == null || board.getCounterAtPosition(new Position(col+3, row)) == null) {
+          System.out.println("B HI");
+          if (board.getCounterAtPosition(new Position(col, row)) == null || board.getCounterAtPosition(new Position(col+1, row)) == null || board.getCounterAtPosition(new Position(col+2, row)) == null) {
             continue;
           } else {
-            if (board.getCounterAtPosition(new Position(col+1, row)).equals(board.getCounterAtPosition(new Position(col+2, row)))
-                    && board.getCounterAtPosition(new Position(col+1, row)).equals(board.getCounterAtPosition(new Position(col+3, row)))) {
+            System.out.println("B HII");
+            if (board.getCounterAtPosition(new Position(col, row)).equals(board.getCounterAtPosition(new Position(col+1, row)))
+                    && board.getCounterAtPosition(new Position(col, row)).equals(board.getCounterAtPosition(new Position(col+2, row)))) {
               System.out.println("B) FOUND 3");
-              if (!board.hasCounterAtPosition(new Position(col+4, row))) {
-                System.out.println("col OUTPUT:" + col+4);
-                return col+4;
+              if (!board.hasCounterAtPosition(new Position(col+3, row))) {
+                System.out.println("col OUTPUT:" + col+3);
+                return col+3;
               }
             }
           }
         }
         if (row + 3 < boardHeight) {
-          if (board.getCounterAtPosition(new Position(col+1, row + 1)) == null || board.getCounterAtPosition(new Position(col+2, row + 2)) == null || board.getCounterAtPosition(new Position(col+2, row + 3)) == null) {
+          if (board.getCounterAtPosition(new Position(col, row )) == null || board.getCounterAtPosition(new Position(col+1, row + 1)) == null || board.getCounterAtPosition(new Position(col+2, row + 2)) == null) {
             continue;
           } else {
-            if (board.getCounterAtPosition(new Position(col+1, row+1)).equals(board.getCounterAtPosition(new Position(col+2, row+2)))
-                    && board.getCounterAtPosition(new Position(col+1, row+1)).equals(board.getCounterAtPosition(new Position(col+3, row+3)))) {
+            if (board.getCounterAtPosition(new Position(col, row)).equals(board.getCounterAtPosition(new Position(col+1, row+1)))
+                    && board.getCounterAtPosition(new Position(col, row)).equals(board.getCounterAtPosition(new Position(col+2, row+2)))) {
               System.out.println("C) FOUND 3");
-              if (!board.hasCounterAtPosition(new Position(col+4, row))) {
-                System.out.println("col OUTPUT:" + col+4);
-                return col+4;
+              if (!board.hasCounterAtPosition(new Position(col+3, row))) {
+                System.out.println("col OUTPUT:" + col+3);
+                return col+3;
               }
             }
           }
@@ -83,12 +87,12 @@ public class AlanisFourconnect extends Player {
           if (board.getCounterAtPosition(new Position(col+1, row - 1)) == null || board.getCounterAtPosition(new Position(col+2, row - 2)) == null || board.getCounterAtPosition(new Position(col+2, row - 3)) == null) {
             continue;
           } else {
-            if (board.getCounterAtPosition(new Position(col+1, row-1)).equals(board.getCounterAtPosition(new Position(col+2, row-2)))
-                    && board.getCounterAtPosition(new Position(col+1, row-1)).equals(board.getCounterAtPosition(new Position(col+3, row-3)))) {
+            if (board.getCounterAtPosition(new Position(col, row)).equals(board.getCounterAtPosition(new Position(col+1, row-1)))
+                    && board.getCounterAtPosition(new Position(col, row)).equals(board.getCounterAtPosition(new Position(col+2, row-2)))) {
               System.out.println("D) FOUND 3");
-              if (!board.hasCounterAtPosition(new Position(col+4, row))) {
-                System.out.println("col OUTPUT:" + col+4);
-                return col+4;
+              if (!board.hasCounterAtPosition(new Position(col+3, row))) {
+                System.out.println("col OUTPUT:" + col+3);
+                return col+3;
               }
             }
           }
