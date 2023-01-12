@@ -38,6 +38,8 @@ public class AIAnalyser {
         for (int column = 0; column < board.getConfig().getWidth(); column++) {
             if (isWin(column, board, counter, false)) {
                 return column;
+            } else if ((isWin(column, board, counter, true))){
+                return column;
             }
         }
         return null;

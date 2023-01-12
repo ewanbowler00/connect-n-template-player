@@ -1,8 +1,8 @@
 package com.thg.accelerator23.connectn.ai.politicallyconnect;
 
 import com.thehutgroup.accelerator.connectn.player.*;
-import com.thg.accelerator23.connectn.ai.politicallyconnect.analysis.BoardAnalyser;
-import com.thg.accelerator23.connectn.ai.politicallyconnect.analysis.GameState;
+//import com.thg.accelerator23.connectn.ai.politicallyconnect.analysis.BoardAnalyser;
+//import com.thg.accelerator23.connectn.ai.politicallyconnect.analysis.GameState;
 
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -18,6 +18,7 @@ public class AlanisFourconnect extends Player {
     do {
       randomMove = columnsToPickFrom.get(ThreadLocalRandom.current().nextInt(columnsToPickFrom.size()));
     } while (board.hasCounterAtPosition(new Position(randomMove, board.getConfig().getHeight() - 1)));
+    ;
     return randomMove;
   }
 
@@ -60,6 +61,7 @@ public class AlanisFourconnect extends Player {
 
     List<Integer> propaGoodMoves = slayIAnalyser.movesNotBelowGameEndingSpace(board, getCounter());
     try {
+      System.out.println();
       Integer winningMove = slayIAnalyser.winningColumn(board, getCounter());
       if (winningMove != null) {
         return winningMove;
@@ -68,8 +70,10 @@ public class AlanisFourconnect extends Player {
       if (blockingAWin != null) {
         return blockingAWin;
       }
+      System.out.println("random1");
       return validRandomMove(board, propaGoodMoves);
     } catch (Exception exception) {
+      System.out.println("random2");
       return validRandomMove(board, propaGoodMoves);
     }
   }
