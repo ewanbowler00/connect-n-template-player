@@ -50,7 +50,7 @@ public class AlanisFourconnect extends Player {
 
 
   @Override
-  //need to add the last two bits from BoardAnalyser for twoInARow
+
   public int makeMove(Board board) {
     AIAnalyser slayIAnalyser = new AIAnalyser(board.getConfig());
     List<Integer> propaGoodMoves = slayIAnalyser.movesNotBelowGameEndingSpace(board, getCounter());
@@ -63,19 +63,49 @@ public class AlanisFourconnect extends Player {
       if (blockingAWin != null) {
         return blockingAWin;
       }
-      List<Integer> builds3InARow = slayIAnalyser.getMovesThatExtendATwo(board, getCounter());
-      if (!builds3InARow.isEmpty()) {
-        System.out.println("building 3 in a row" + builds3InARow);
-        return mostCentralValidMove(board, builds3InARow);
-      }
-      List<Integer> blocksFor2InARow = slayIAnalyser.getMovesThatExtendATwo(board, getCounter().getOther());
-      if (!blocksFor2InARow.isEmpty()) {
-        System.out.println("blocking 2 in a row" + blocksFor2InARow);
-        return mostCentralValidMove(board, blocksFor2InARow);
-      }
+      //PUT OTHER CODE FROM BOARD ANALYSER
+//      List<Integer> builds3InARow = slayIAnalyser.getMovesThatExtendATwo(board, getCounter());
+//      if (!builds3InARow.isEmpty()) {
+//        System.out.println("building 3 in a row" + builds3InARow);
+//        return mostCentralValidMove(board, builds3InARow);
+//      }
+//      List<Integer> blocksFor2InARow = slayIAnalyser.getMovesThatExtendATwo(board, getCounter().getOther());
+//      if (!blocksFor2InARow.isEmpty()) {
+//        System.out.println("blocking 2 in a row" + blocksFor2InARow);
+//        return mostCentralValidMove(board, blocksFor2InARow);
+//      }
       return validRandomMove(board, propaGoodMoves);
     } catch (Exception exception) {
       return validRandomMove(board, propaGoodMoves);
     }
   }
+
+//Older version
+//  public int makeMove(Board board) {
+//    AIAnalyser slayIAnalyser = new AIAnalyser(board.getConfig());
+//    List<Integer> propaGoodMoves = slayIAnalyser.movesNotBelowGameEndingSpace(board, getCounter());
+//    try {
+//      Integer winningMove = slayIAnalyser.winningColumn(board, getCounter());
+//      if (winningMove != null) {
+//        return winningMove;
+//      }
+//      Integer blockingAWin = slayIAnalyser.winningColumn(board, getCounter().getOther());
+//      if (blockingAWin != null) {
+//        return blockingAWin;
+//      }
+//      List<Integer> builds3InARow = slayIAnalyser.getMovesThatExtendATwo(board, getCounter());
+//      if (!builds3InARow.isEmpty()) {
+//        System.out.println("building 3 in a row" + builds3InARow);
+//        return mostCentralValidMove(board, builds3InARow);
+//      }
+//      List<Integer> blocksFor2InARow = slayIAnalyser.getMovesThatExtendATwo(board, getCounter().getOther());
+//      if (!blocksFor2InARow.isEmpty()) {
+//        System.out.println("blocking 2 in a row" + blocksFor2InARow);
+//        return mostCentralValidMove(board, blocksFor2InARow);
+//      }
+//      return validRandomMove(board, propaGoodMoves);
+//    } catch (Exception exception) {
+//      return validRandomMove(board, propaGoodMoves);
+//    }
+//  }
 }

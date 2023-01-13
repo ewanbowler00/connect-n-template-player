@@ -124,19 +124,21 @@ public class BoardAnalyser {
         return false;
     }
 
-    public Integer threeInARowPosition(Board board, Counter counter) {
+    public List<Integer>  threeInARowPosition(Board board, Counter counter) {
+        List<Integer> thirdTokenPlacements = new ArrayList<>();
         for (int column = 0; column < board.getConfig().getWidth(); column++) {
             try {
                 Board futureBoard = new Board(board, column, counter);
                 List<Line> lines = getLines(futureBoard);
                 for(Line line:lines){
                     if(getBestRunByColour(line).get(counter)==board.getConfig().getnInARowForWin()-1){
-                        return column;
+                       thirdTokenPlacements.add(column);
                     }
                 }
             }catch (InvalidMoveException e){
+                continue;
             }
         }
-        return null;
+        return thirdTokenPlacements;
     }
 }
