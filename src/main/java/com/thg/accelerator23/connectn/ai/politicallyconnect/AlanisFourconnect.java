@@ -1,6 +1,7 @@
 package com.thg.accelerator23.connectn.ai.politicallyconnect;
 
 import com.thehutgroup.accelerator.connectn.player.*;
+import com.thg.accelerator23.connectn.ai.politicallyconnect.analysis.BoardAnalyser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +54,8 @@ public class AlanisFourconnect extends Player {
 
   public int makeMove(Board board) {
     AIAnalyser slayIAnalyser = new AIAnalyser(board.getConfig());
+    BoardAnalyser boardAnalyser = new BoardAnalyser(board.getConfig());
+
     List<Integer> propaGoodMoves = slayIAnalyser.movesNotBelowGameEndingSpace(board, getCounter());
     try {
       Integer winningMove = slayIAnalyser.winningColumn(board, getCounter());
@@ -63,17 +66,16 @@ public class AlanisFourconnect extends Player {
       if (blockingAWin != null) {
         return blockingAWin;
       }
-      //PUT OTHER CODE FROM BOARD ANALYSER
-//      List<Integer> builds3InARow = slayIAnalyser.getMovesThatExtendATwo(board, getCounter());
-//      if (!builds3InARow.isEmpty()) {
-//        System.out.println("building 3 in a row" + builds3InARow);
-//        return mostCentralValidMove(board, builds3InARow);
-//      }
-//      List<Integer> blocksFor2InARow = slayIAnalyser.getMovesThatExtendATwo(board, getCounter().getOther());
-//      if (!blocksFor2InARow.isEmpty()) {
-//        System.out.println("blocking 2 in a row" + blocksFor2InARow);
-//        return mostCentralValidMove(board, blocksFor2InARow);
-//      }
+      List<Integer> thirdTokenMoves = boardAnalyser.threeInARowPosition(board, getCounter());
+      if (!thirdTokenMoves.isEmpty()) {
+        System.out.println("Building 3 in a row" + thirdTokenMoves);
+        return mostCentralValidMove(board, thirdTokenMoves);
+      }
+      List<Integer> thirdTokenBlocks = boardAnalyser.threeInARowPosition(board, getCounter().getOther());
+      if (!thirdTokenMoves.isEmpty()) {
+        System.out.println("Blocking 3 in a row" + thirdTokenBlocks);
+        return mostCentralValidMove(board, thirdTokenBlocks);
+      }
       return validRandomMove(board, propaGoodMoves);
     } catch (Exception exception) {
       return validRandomMove(board, propaGoodMoves);
