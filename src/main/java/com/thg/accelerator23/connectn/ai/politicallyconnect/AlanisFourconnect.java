@@ -60,6 +60,13 @@ public class AlanisFourconnect extends Player {
       if (blockingAWin != null){
         return blockingAWin;
       }
+      AIAnalyser threeIARGameStateAnalyser = new AIAnalyser(new GameConfig(board.getConfig().getWidth(), board.getConfig().getHeight(), 3));
+      Integer blockingATwo = threeIARGameStateAnalyser.winningColumn(board, getCounter().getOther());
+      System.out.println(blockingATwo);
+      if (blockingATwo!= null){
+        return blockingATwo;
+      }
+      System.out.println("random move");
       return validRandomMove(board, propaGoodMoves);
     } catch(Exception exception){
       return validRandomMove(board, propaGoodMoves);
