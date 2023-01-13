@@ -2,6 +2,7 @@ package com.thg.accelerator23.connectn.ai.politicallyconnect;
 
 import com.thehutgroup.accelerator.connectn.player.*;
 import com.thg.accelerator23.connectn.ai.politicallyconnect.analysis.BoardAnalyser;
+import com.thg.accelerator23.connectn.ai.politicallyconnect.analysis.Line;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +37,7 @@ public class AIAnalyser {
     public boolean isColumnFull(Board board, int column) {
         return board.getCounterAtPosition(new Position(column, board.getConfig().getHeight() - 1)) != null;
     }
+
 
     public List<Integer> movesNotBelowGameEndingSpace(Board board, Counter counter) {
         List<Integer> propaDecentMoves = new ArrayList<>();

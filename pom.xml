@@ -15,7 +15,7 @@
         </repository>
     </repositories>
 
-    <name>Politically Connect's Connect N AI</name>
+    <name>${yourteam}'s Connect N AI</name>
 
     <properties>
         <!-- FIXME Fill in these properties - they need to be lowercase -->

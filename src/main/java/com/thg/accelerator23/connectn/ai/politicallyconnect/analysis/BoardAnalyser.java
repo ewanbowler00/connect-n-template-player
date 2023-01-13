@@ -1,9 +1,6 @@
 package com.thg.accelerator23.connectn.ai.politicallyconnect.analysis;
 
-import com.thehutgroup.accelerator.connectn.player.Board;
-import com.thehutgroup.accelerator.connectn.player.Counter;
-import com.thehutgroup.accelerator.connectn.player.GameConfig;
-import com.thehutgroup.accelerator.connectn.player.Position;
+import com.thehutgroup.accelerator.connectn.player.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -109,5 +106,37 @@ public class BoardAnalyser {
             bestRunByColour.put(current, Math.max(currentRunLength, 1));
         }
         return bestRunByColour;
+    }
+
+    public boolean isThreeInARowPossible(Board board, Counter counter){
+        for (int column=0; column<board.getConfig().getWidth();column++) {
+            try {
+                Board futureBoard = new Board(board, column, counter);
+                List<Line> lines = getLines(futureBoard);
+                for(Line line:lines){
+                    if(getBestRunByColour(line).get(counter)==board.getConfig().getnInARowForWin()-1){
+                        return true;
+                    }
+                }
+            }catch (InvalidMoveException e){
+            }
+        }
+        return false;
+    }
+
+    public Integer threeInARowPosition(Board board, Counter counter) {
+        for (int column = 0; column < board.getConfig().getWidth(); column++) {
+            try {
+                Board futureBoard = new Board(board, column, counter);
+                List<Line> lines = getLines(futureBoard);
+                for(Line line:lines){
+                    if(getBestRunByColour(line).get(counter)==board.getConfig().getnInARowForWin()-1){
+                        return column;
+                    }
+                }
+            }catch (InvalidMoveException e){
+            }
+        }
+        return null;
     }
 }
