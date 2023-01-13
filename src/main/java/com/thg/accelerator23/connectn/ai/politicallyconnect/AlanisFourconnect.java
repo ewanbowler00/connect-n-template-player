@@ -1,6 +1,8 @@
 package com.thg.accelerator23.connectn.ai.politicallyconnect;
 
 import com.thehutgroup.accelerator.connectn.player.*;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -60,13 +62,16 @@ public class AlanisFourconnect extends Player {
       if (blockingAWin != null){
         return blockingAWin;
       }
-      AIAnalyser threeIARGameStateAnalyser = new AIAnalyser(new GameConfig(board.getConfig().getWidth(), board.getConfig().getHeight(), 3));
-      Integer blockingATwo = threeIARGameStateAnalyser.winningColumn(board, getCounter().getOther());
-      System.out.println(blockingATwo);
-      if (blockingATwo!= null){
-        return blockingATwo;
+      List<Integer> builds3InARow = slayIAnalyser.getMovesThatExtendATwo(board, getCounter());
+      if (!builds3InARow.isEmpty()){
+        System.out.println("building 3 in a row" + builds3InARow);
+        return mostCentralValidMove(board, builds3InARow);
       }
-      System.out.println("random move");
+      List<Integer> blocksFor2InARow = slayIAnalyser.getMovesThatExtendATwo(board, getCounter().getOther());
+      if (!blocksFor2InARow.isEmpty()) {
+        System.out.println("blocking 2 in a row" + blocksFor2InARow);
+        return mostCentralValidMove(board, blocksFor2InARow);
+      }
       return validRandomMove(board, propaGoodMoves);
     } catch(Exception exception){
       return validRandomMove(board, propaGoodMoves);

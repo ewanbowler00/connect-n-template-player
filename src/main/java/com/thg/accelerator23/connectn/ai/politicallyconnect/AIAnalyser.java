@@ -8,9 +8,11 @@ import java.util.List;
 
 public class AIAnalyser {
     BoardAnalyser boardAnalyser;
+    GameConfig gameConfig;
 
     public AIAnalyser(GameConfig gameConfig) {
         this.boardAnalyser = new BoardAnalyser(gameConfig);
+        this.gameConfig = gameConfig;
     }
 
     private boolean isWin(int column, Board board, Counter counter) {
@@ -48,5 +50,36 @@ public class AIAnalyser {
             }
         }
         return propaDecentMoves;
+    }
+
+    private Counter[][] getCounterPlacements(Board board) {
+        Counter[][] counters = new Counter[board.getConfig().getWidth()][board.getConfig().getHeight()];
+        for (int x=0; x<board.getConfig().getWidth();x++) {
+            for (int y=0; y<board.getConfig().getHeight();y++) {
+                counters[x][y] = board.getCounterAtPosition(new Position(x, y));
+            }
+        }
+        return counters;
+    }
+
+    public List<Integer> getMovesThatExtendATwo(Board board, Counter counter) {
+        List<Integer> movesThatExtendATwo = new ArrayList<>();
+        for (int column = 0; column < board.getConfig().getWidth(); column++){
+            try {
+                Board playedMoveBoard = new Board(board, column, counter);
+                if (winningColumn(playedMoveBoard, counter) != null){
+                    movesThatExtendATwo.add(column);
+                }
+            } catch (InvalidMoveException exception) {
+                continue;
+            }
+        }
+//        Board newConfigBoard = new Board(getCounterPlacements(board), new GameConfig(board.getConfig().getWidth(), board.getConfig().getHeight(), 3));
+//        for (int column = 0; column<newConfigBoard.getConfig().getWidth(); column++) {
+//            if (isWin(column, newConfigBoard, counter)) {
+//                movesThatExtendATwo.add(column);
+//            }
+//        }
+        return movesThatExtendATwo;
     }
 }
