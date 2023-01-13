@@ -1,6 +1,7 @@
 package com.thg.accelerator23.connectn.ai.politicallyconnect.analysis;
 
 import com.thehutgroup.accelerator.connectn.player.*;
+import com.thg.accelerator23.connectn.ai.politicallyconnect.AIAnalyser;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -126,13 +127,16 @@ public class BoardAnalyser {
 
     public List<Integer> threeInARowPosition(Board board, Counter counter) {
         List<Integer> thirdTokenPlacements = new ArrayList<>();
+        AIAnalyser slayIAnalyser = new AIAnalyser(board.getConfig());
+        List<Integer> propaGoodMoves = slayIAnalyser.movesNotBelowGameEndingSpace(board, counter);
+
         for (int column = 0; column < board.getConfig().getWidth(); column++) {
             try {
                 Board futureBoard = new Board(board, column, counter);
                 List<Line> lines = getLines(futureBoard);
-                if (isThreeInARowPossible(futureBoard,counter)) {
+                if (isThreeInARowPossible(futureBoard,counter) && propaGoodMoves.contains(column)) {
                     for (Line line : lines) {
-                        if (getBestRunByColour(line).get(counter) == board.getConfig().getnInARowForWin() - 1) {
+                        if (getBestRunByColour(line).get(counter) == board.getConfig().getnInARowForWin() - 1 && propaGoodMoves.contains(column)) {
                             thirdTokenPlacements.add(column);
                         }
                     }

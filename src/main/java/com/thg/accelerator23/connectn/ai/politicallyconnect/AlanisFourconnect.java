@@ -51,12 +51,12 @@ public class AlanisFourconnect extends Player {
 
 
   @Override
-
   public int makeMove(Board board) {
     AIAnalyser slayIAnalyser = new AIAnalyser(board.getConfig());
     BoardAnalyser boardAnalyser = new BoardAnalyser(board.getConfig());
 
     List<Integer> propaGoodMoves = slayIAnalyser.movesNotBelowGameEndingSpace(board, getCounter());
+
     try {
       Integer winningMove = slayIAnalyser.winningColumn(board, getCounter());
       if (winningMove != null) {
