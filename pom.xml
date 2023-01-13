@@ -5,7 +5,7 @@
     <!-- do not change this -->
     <groupId>com.thg.accelerator23.connectn.ai</groupId>
     <!-- do not change this -->
-    <artifactId>politicallyconnect</artifactId>
+    <artifactId>${yourteam}</artifactId>
     <version>1.0</version>
 
     <repositories>
