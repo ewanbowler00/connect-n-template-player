@@ -46,6 +46,7 @@ public class AlanisFourconnect extends Player {
 //        }
 //      }
 //    }
+//    return highestCol;
 //  }
 
 
@@ -70,7 +71,8 @@ public class AlanisFourconnect extends Player {
       if (!blocksFor2InARow.isEmpty()) {
         return mostCentralValidMove(board, blocksFor2InARow);
       }
-      return validRandomMove(board, propaGoodMoves);
+      return mostCentralValidMove(board, slayIAnalyser.getMinValidVacantY(board, propaGoodMoves));
+//      return validRandomMove(board, propaGoodMoves);
     } catch(Exception exception){
       return validRandomMove(board, propaGoodMoves);
   }

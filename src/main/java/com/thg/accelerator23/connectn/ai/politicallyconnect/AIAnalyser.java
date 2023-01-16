@@ -4,6 +4,7 @@ import com.thehutgroup.accelerator.connectn.player.*;
 import com.thg.accelerator23.connectn.ai.politicallyconnect.analysis.BoardAnalyser;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class AIAnalyser {
@@ -60,6 +61,26 @@ public class AIAnalyser {
             }
         }
         return counters;
+    }
+
+    public List<Integer> getMinValidVacantY(Board board, List<Integer> movesNotBelowGameEndingSpace) {
+            int minMinY = board.getConfig().getHeight()+1;
+            ArrayList<Integer> minColumns = new ArrayList<>();
+            for(Integer column: movesNotBelowGameEndingSpace) {
+                for (int i = board.getConfig().getHeight() - 1; i >= 0; --i) {
+                    if (i == 0 || getCounterPlacements(board)[column][i - 1] != null) {
+                        if (minMinY > i) {
+                            minMinY = i;
+                            minColumns = new ArrayList<>();
+                            minColumns.add(column);
+                        } else if (minMinY == i || minMinY == i-1) {
+                            minColumns.add(column);
+                        }
+                    break;
+                    }
+                }
+            }
+            return minColumns;
     }
 
     public List<Integer> getMovesThatExtendATwo(Board board, Counter counter, List<Integer> listOfCols) {
