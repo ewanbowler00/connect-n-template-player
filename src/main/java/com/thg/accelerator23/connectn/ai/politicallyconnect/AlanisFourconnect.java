@@ -64,12 +64,10 @@ public class AlanisFourconnect extends Player {
       }
       List<Integer> builds3InARow = slayIAnalyser.getMovesThatExtendATwo(board, getCounter(), propaGoodMoves);
       if (!builds3InARow.isEmpty()){
-        System.out.println("building 3 in a row" + builds3InARow);
         return mostCentralValidMove(board, builds3InARow);
       }
       List<Integer> blocksFor2InARow = slayIAnalyser.getMovesThatExtendATwo(board, getCounter().getOther(), propaGoodMoves);
       if (!blocksFor2InARow.isEmpty()) {
-        System.out.println("blocking 2 in a row" + blocksFor2InARow);
         return mostCentralValidMove(board, blocksFor2InARow);
       }
       return validRandomMove(board, propaGoodMoves);
