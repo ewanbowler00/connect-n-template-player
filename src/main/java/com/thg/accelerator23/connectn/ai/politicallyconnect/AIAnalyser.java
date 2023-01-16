@@ -62,9 +62,9 @@ public class AIAnalyser {
         return counters;
     }
 
-    public List<Integer> getMovesThatExtendATwo(Board board, Counter counter) {
+    public List<Integer> getMovesThatExtendATwo(Board board, Counter counter, List<Integer> listOfCols) {
         List<Integer> movesThatExtendATwo = new ArrayList<>();
-        for (int column = 0; column < board.getConfig().getWidth(); column++){
+        for (Integer column:listOfCols){
             try {
                 Board playedMoveBoard = new Board(board, column, counter);
                 if (winningColumn(playedMoveBoard, counter) != null){
