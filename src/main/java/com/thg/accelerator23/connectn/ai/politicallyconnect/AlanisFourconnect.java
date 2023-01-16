@@ -9,7 +9,6 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class AlanisFourconnect extends Player {
   public AlanisFourconnect(Counter counter) {
-    //TODO: fill in your name here
     super(counter, AlanisFourconnect.class.getName());
   }
 
