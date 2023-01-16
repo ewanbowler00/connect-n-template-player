@@ -45,6 +45,7 @@ public class AlanisFourconnect extends Player {
 //        }
 //      }
 //    }
+//    return highestCol;
 //  }
 
 
@@ -61,17 +62,16 @@ public class AlanisFourconnect extends Player {
       if (blockingAWin != null){
         return blockingAWin;
       }
-      List<Integer> builds3InARow = slayIAnalyser.getMovesThatExtendATwo(board, getCounter());
+      List<Integer> builds3InARow = slayIAnalyser.getMovesThatExtendATwo(board, getCounter(), propaGoodMoves);
       if (!builds3InARow.isEmpty()){
-        System.out.println("building 3 in a row" + builds3InARow);
         return mostCentralValidMove(board, builds3InARow);
       }
-      List<Integer> blocksFor2InARow = slayIAnalyser.getMovesThatExtendATwo(board, getCounter().getOther());
+      List<Integer> blocksFor2InARow = slayIAnalyser.getMovesThatExtendATwo(board, getCounter().getOther(), propaGoodMoves);
       if (!blocksFor2InARow.isEmpty()) {
-        System.out.println("blocking 2 in a row" + blocksFor2InARow);
         return mostCentralValidMove(board, blocksFor2InARow);
       }
-      return validRandomMove(board, propaGoodMoves);
+      return mostCentralValidMove(board, slayIAnalyser.getMinValidVacantY(board, propaGoodMoves));
+//      return validRandomMove(board, propaGoodMoves);
     } catch(Exception exception){
       return validRandomMove(board, propaGoodMoves);
   }
